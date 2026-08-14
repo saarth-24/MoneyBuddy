@@ -1,0 +1,23 @@
+{
+    "thresholds": {
+        "savingratio": 20,
+        "expenseratio": 70,
+        "debtratio": 30
+    },
+
+    "penalty": {
+        "savingratiopenalty": 25,
+        "expenseratiopenalty": 25,
+        "debtratiopenalty": 30
+    },
+
+    "explanations": {
+        "INCREASE_SAVINGS": "Your savings ratio is below the recommended threshold. Increasing your monthly savings can strengthen your financial safety buffer and improve your ability to achieve future goals.",
+
+        "REDUCE_EXPENSES": "Your expenses consume a large portion of your income. Reducing unnecessary or discretionary spending can increase the amount available for savings, debt repayment and investments.",
+
+        "REDUCE_DEBT": "Your debt burden is significant relative to your income. Prioritizing debt repayment, especially high-interest debt, can reduce financial risk and improve future cash flow.",
+
+        "MAINTAIN_STRATEGY": "Your current savings, spending and debt indicators are within the configured healthy ranges. Continue monitoring your financial position and goals."
+    }
+}
