@@ -21,6 +21,14 @@ app.add_middleware(
 )
 
 
+@app.get("/debug-version")
+def debug_version():
+    return {
+        "source": "api.main",
+        "version": "0e58adf"
+    }
+
+
 # =========================================================
 # HEALTH CHECK
 # =========================================================
