@@ -167,6 +167,11 @@ def run_moneybuddy(profile: FinancialProfile, user: User = None):
         health_advice
     )
 
+    goals_analysis = analyze_goals(
+        profile,
+        monthly_available_for_goal=salary_plan.goal_savings
+    )
+
 
     # =====================================================
     # 4. GOAL PLANNER

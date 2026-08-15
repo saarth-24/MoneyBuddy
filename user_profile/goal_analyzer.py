@@ -35,7 +35,8 @@ class GoalsAnalysis:
 
 
 def analyze_goals(
-    profile: FinancialProfile
+    profile: FinancialProfile,
+    monthly_available_for_goal: float = None
 ) -> GoalsAnalysis:
 
     goals = profile.goals
@@ -54,22 +55,24 @@ def analyze_goals(
     # AVAILABLE MONTHLY SURPLUS
     # -----------------------------------------
 
-    total_emi = sum(
-        debt.emi
-        for debt in profile.debts
-    )
+    if monthly_available_for_goal is None:
 
-    monthly_surplus = (
-        profile.monthly_income
-        - profile.essential_expenses
-        - profile.discretionary_expenses
-        - total_emi
-    )
+        total_emi = sum(
+            debt.emi
+            for debt in profile.debts
+        )
 
-    monthly_surplus = max(
-        monthly_surplus,
-        0.0
-    )
+        monthly_available_for_goal = (
+            profile.monthly_income
+            - profile.essential_expenses
+            - profile.discretionary_expenses
+            - total_emi
+        )
+
+        monthly_available_for_goal = max(
+            monthly_available_for_goal,
+            0.0
+        )
 
     results = []
 
@@ -98,7 +101,7 @@ def analyze_goals(
 
             status = "COMPLETED"
 
-        elif required_monthly <= monthly_surplus:
+        elif required_monthly <= monthly_available_for_goal:
 
             status = "ON_TRACK"
 

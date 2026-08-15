@@ -165,7 +165,10 @@ def make_profile_decisions(
             goals_analysis.goals[0]
         )
 
-        if highest_goal.status == "AT_RISK":
+        if (
+            highest_goal.required_monthly_saving
+            > monthly_surplus
+    ):
 
             decisions.append(
 

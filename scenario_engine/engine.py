@@ -127,14 +127,6 @@ def run_scenario(
     # 5. INVESTMENT CAPACITY
     # =====================================================
 
-    investment_capacity = max(
-        new_surplus
-        - emergency_allocation
-        - additional_investment,
-        0
-    )
-
-
     # =====================================================
     # 6. REMAINING AMOUNT AVAILABLE FOR GOAL
     # =====================================================
@@ -146,6 +138,65 @@ def run_scenario(
         - additional_investment,
         0
     )
+
+
+    actual_goal_allocation = min(
+        max(goal_allocation, 0),
+        remaining_after_priorities
+    )
+
+
+    # =====================================================
+    # 5. INVESTMENT CAPACITY
+    # =====================================================
+
+    # MoneyBuddy should not report investment capacity
+    # when higher-priority financial risks are present.
+    #
+    # High-interest debt and insufficient emergency coverage
+    # take priority over additional investment.
+
+    monthly_obligations = (
+        new_expenses
+        + new_debt_payment
+    )
+
+    if monthly_obligations > 0:
+
+        projected_emergency_months = (
+            emergency_fund
+            + emergency_allocation
+        ) / monthly_obligations
+
+    else:
+
+        projected_emergency_months = 0.0
+
+
+    has_high_interest_debt = (
+        current_debt > 0
+    )
+
+    emergency_ready = (
+        projected_emergency_months >= 3
+    )
+
+    if has_high_interest_debt or not emergency_ready:
+
+        investment_capacity = 0.0
+
+    else:
+
+        investment_capacity = max(
+            new_surplus
+            - emergency_allocation
+            - extra_debt_payment
+            - actual_goal_allocation,
+            0
+        )
+
+
+    
 
 
     # IMPORTANT:
@@ -246,7 +297,7 @@ def run_scenario(
     explanation = (
         f"{scenario_name} changes your estimated "
         f"monthly surplus to ₹{new_surplus:.2f}, "
-        f"which is {change_text} than your current "
+        f"which is {change_text} from your current "
         f"surplus. "
         f"₹{actual_goal_allocation:.2f} is allocated "
         f"toward the goal under this scenario. "
