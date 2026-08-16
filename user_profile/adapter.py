@@ -93,6 +93,16 @@ def profile_to_user(profile: FinancialProfile) -> User:
     print("PROFILE DISCRETIONARY EXPENSES:", profile.discretionary_expenses)
 
 
+    print("========== USER ADAPTER DEBUG ==========")
+    print("PROFILE monthly_expenses:", profile.monthly_expenses)
+    print("PROFILE essential_expenses:", profile.essential_expenses)
+    print("PROFILE discretionary_expenses:", profile.discretionary_expenses)
+
+    print("USER essential_expense:", profile.monthly_expenses)
+
+    print("========================================")
+
+
     return User(
         salary=profile.monthly_income,
 

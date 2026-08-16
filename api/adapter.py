@@ -137,6 +137,19 @@ def build_financial_profile(
     # FINAL INTERNAL PROFILE
     # =====================================================
 
+    print("========== API ADAPTER DEBUG ==========")
+    print("REQUEST total_expense:", profile.total_expense)
+    print("REQUEST rent:", profile.rent)
+    print("REQUEST subscriptions:", profile.subscriptions_bills)
+    print("REQUEST household:", profile.household)
+    print("REQUEST lifestyle:", profile.lifestyle)
+
+    print("CALCULATED essential:", essential_expenses)
+    print("CALCULATED discretionary:", discretionary_expenses)
+
+    print("=======================================")
+
+
     return FinancialProfile(
 
     monthly_income=profile.monthly_income,
