@@ -49,7 +49,7 @@ def make_profile_decisions(
 
     monthly_surplus = (
         profile.monthly_income
-        - profile.essential_expenses
+        - profile.monthly_expenses
         - debt_analysis.total_emi
     )
 
@@ -63,7 +63,7 @@ def make_profile_decisions(
     # =========================================
 
     monthly_obligations = (
-        profile.essential_expenses
+        profile.monthly_expenses
         + debt_analysis.total_emi
     )
 
