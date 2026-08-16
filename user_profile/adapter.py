@@ -88,11 +88,9 @@ def profile_to_user(profile: FinancialProfile) -> User:
     # -----------------------------
 
     return User(
-    salary=profile.monthly_income,
+        salary=profile.monthly_income,
 
-    essential_expense=(
-        total_expense
-    ),
+        essential_expense=profile.essential_expenses,
 
         debt=total_debt,
 
