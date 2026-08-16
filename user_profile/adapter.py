@@ -79,7 +79,7 @@ def profile_to_user(profile: FinancialProfile) -> User:
     # -----------------------------
 
     total_expense = (
-        profile.essential_expenses
+        profile.monthly_expenses
         + profile.discretionary_expenses
     )
 
@@ -87,10 +87,16 @@ def profile_to_user(profile: FinancialProfile) -> User:
     # EXISTING USER MODEL
     # -----------------------------
 
+    print("========== MONEYBUDDY NEW CODE ==========")
+    print("PROFILE MONTHLY EXPENSES:", profile.monthly_expenses)
+    print("PROFILE ESSENTIAL EXPENSES:", profile.essential_expenses)
+    print("PROFILE DISCRETIONARY EXPENSES:", profile.discretionary_expenses)
+
+
     return User(
         salary=profile.monthly_income,
 
-        essential_expense=profile.essential_expenses,
+        essential_expense=profile.monthly_expenses,
 
         debt=total_debt,
 
