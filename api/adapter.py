@@ -28,15 +28,9 @@ def build_financial_profile(
     # essential information for future use, but we do not
     # double-count them.
 
-    essential_expenses = (
-        profile.rent
-        + profile.subscriptions_bills
-        + profile.household
-        + profile.family_dependencies_expense
-    )
+    essential_expenses = profile.total_expense
+    discretionary_expenses = 0.0
 
-    # Lifestyle spending is discretionary.
-    discretionary_expenses = profile.lifestyle
 
     # If the detailed categories do not add up to the
     # user's declared total expense, preserve the remaining
